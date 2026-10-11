@@ -1,0 +1,11 @@
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\bin\Debug\net8.0\SelfStorage.Common.deps.json
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\bin\Debug\net8.0\SelfStorage.Common.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\bin\Debug\net8.0\SelfStorage.Common.pdb
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\SelfStorage.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\SelfStorage.Common.AssemblyInfoInputs.cache
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\SelfStorage.Common.AssemblyInfo.cs
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\SelfStorage.Common.csproj.CoreCompileInputs.cache
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\SelfStorage.Common.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\refint\SelfStorage.Common.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\SelfStorage.Common.pdb
+D:\STUDYING\SWP391\Backend\SelfStorage.Common\obj\Debug\net8.0\ref\SelfStorage.Common.dll

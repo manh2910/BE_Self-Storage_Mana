@@ -1,0 +1,17 @@
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\bin\Debug\net8.0\SelfStorage.Repositories.deps.json
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\bin\Debug\net8.0\SelfStorage.Repositories.runtimeconfig.json
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\bin\Debug\net8.0\SelfStorage.Repositories.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\bin\Debug\net8.0\SelfStorage.Repositories.pdb
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\bin\Debug\net8.0\SelfStorage.Common.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\bin\Debug\net8.0\SelfStorage.Common.pdb
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.csproj.AssemblyReference.cache
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.AssemblyInfoInputs.cache
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.AssemblyInfo.cs
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.csproj.CoreCompileInputs.cache
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStor.507072B7.Up2Date
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\refint\SelfStorage.Repositories.dll
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.pdb
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\SelfStorage.Repositories.genruntimeconfig.cache
+D:\STUDYING\SWP391\Backend\SelfStorage.Repositories\obj\Debug\net8.0\ref\SelfStorage.Repositories.dll

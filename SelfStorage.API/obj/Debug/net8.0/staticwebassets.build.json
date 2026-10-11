@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "lY85a9UWG7CKcg13i+LqSgo1AOFhH7GzWr/+nTm3RfM=",
+  "Source": "SelfStorage.API",
+  "BasePath": "_content/SelfStorage.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
