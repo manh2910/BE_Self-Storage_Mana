@@ -44,4 +44,3 @@ Password tất cả: **123456**
 
 1. SSMS: chạy `01_CreateDatabase.sql` → `02_SeedSampleAccounts.sql`
 2. Visual Studio: mở `Backend/SelfStorage.sln` → F5 (API)
-3. Frontend: `cd Frontend && npm install && npm run dev`
