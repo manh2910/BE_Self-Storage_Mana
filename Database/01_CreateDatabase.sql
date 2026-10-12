@@ -1,8 +1,5 @@
 -- ============================================================
 -- Self-Storage Facility Rental and Management System
--- Database Script for SQL Server (SSMS 19 compatible)
--- .NET 8 + EF Core 8 ready
--- Version: 1.0 (Adjusted from Logical ERD + improvements)
 -- ============================================================
 
 USE master;
