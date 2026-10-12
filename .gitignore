@@ -1,0 +1,26 @@
+## Thư mục build đầu ra và file tạm của C# 
+bin/
+obj/
+
+## Thư mục cấu hình cá nhân của Visual Studio 2022
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+## Thư viện phụ thuộc tải về từ NuGet
+packages/
+*.nuget.props
+*.nuget.targets
+
+## File cấu hình chứa thông tin bảo mật/nhạy cảm (API Key, Connection String)
+appsettings.Development.json
+appsettings.Local.json
+*.secrets.json
+
+## Tệp tin rác hệ điều hành
+.DS_Store
+Thumbs.db
+
+## Các file log phát sinh khi chạy app
+*.log
