@@ -9,17 +9,10 @@ USE SelfStorageDB;
 GO
 
 -- PasswordHash của "123456" (BCrypt cost 11)
--- Hash: $2a$11$ulYE6v3AXW2OEiWP1AL6beHTYV7P7M1jySC1q.13I2ytgIsCKfY5e
 DECLARE @Hash NVARCHAR(255) = N'$2a$11$ulYE6v3AXW2OEiWP1AL6beHTYV7P7M1jySC1q.13I2ytgIsCKfY5e';
 
 -- ============================================================
 -- 1. SEED 5 TÀI KHOẢN MẪU (1 User / 1 Role)
--- RoleID:
--- 1 = StorageCustomer
--- 2 = FacilityStaff
--- 3 = FacilityManager
--- 4 = BusinessOperationsManager
--- 5 = SystemAdministrator
 -- ============================================================
 IF NOT EXISTS (SELECT 1 FROM USERS WHERE Email = 'customer@selfstorage.local')
 BEGIN
@@ -35,7 +28,6 @@ BEGIN
 END
 ELSE
 BEGIN
-    -- Cập nhật lại mật khẩu chuẩn nếu đã tồn tại
     UPDATE USERS SET PasswordHash = @Hash, Status = 'Active' WHERE Email IN (
         'customer@selfstorage.local',
         'staff@selfstorage.local',
@@ -48,14 +40,13 @@ GO
 
 -- ============================================================
 -- 2. SEED CƠ SỞ KHO MẪU (FACILITIES)
--- Gán ManagerUserID = 3 (Lê Văn Manager)
 -- ============================================================
 IF NOT EXISTS (SELECT 1 FROM FACILITIES WHERE FacilityCode = 'HN-CG01')
 BEGIN
     SET IDENTITY_INSERT FACILITIES ON;
     INSERT INTO FACILITIES (FacilityID, ManagerUserID, CreatedBy, FacilityCode, FacilityName, CityName, Address, PhoneNumber, Status, CreatedAt)
     VALUES
-    (1, 3, 5, 'HN-CG01',    N'Kho Tự Quản Cầu Giấy',  N'Hà Nội',      N'Số 12 Duy Tân, Cầu Giấy, Hà Nội',                '0243888999', 'Active', GETDATE()),
+    (1, 3, 5, 'HN-CG01',    N'Kho Tự Quản Cầu Giấy',  N'Hà Nội',     N'Số 12 Duy Tân, Cầu Giấy, Hà Nội',                '0243888999', 'Active', GETDATE()),
     (2, 3, 5, 'HCM-Q7-01',  N'Kho Tự Quản Tân Thuận', N'Hồ Chí Minh', N'Khu Chế Xuất Tân Thuận, Quận 7, TP. Hồ Chí Minh', '0283888999', 'Active', GETDATE());
     SET IDENTITY_INSERT FACILITIES OFF;
 END
@@ -63,7 +54,6 @@ GO
 
 -- ============================================================
 -- 3. SEED PHÂN CÔNG NHÂN VIÊN (FACILITY_STAFF_ASSIGNMENTS)
--- Gán StaffID = 2 (Trần Thị Staff) vào cơ sở 1 (Cầu Giấy)
 -- ============================================================
 IF NOT EXISTS (SELECT 1 FROM FACILITY_STAFF_ASSIGNMENTS WHERE FacilityID = 1 AND StaffID = 2)
 BEGIN
@@ -83,11 +73,11 @@ BEGIN
     SET IDENTITY_INSERT STORAGE_UNITS ON;
     INSERT INTO STORAGE_UNITS (UnitID, FacilityID, UnitTypeID, UnitCode, Floor, Status, LockType, AccessCode, CreatedAt)
     VALUES
-    (1, 1, 1, 'CG-A101', 1, 'Available', 'Electronic', '1234', GETDATE()),
+    (1, 1, 1, 'CG-A101', 1, 'Occupied', 'Electronic', '1234', GETDATE()),
     (2, 1, 2, 'CG-A102', 1, 'Available', 'Electronic', '1234', GETDATE()),
     (3, 1, 4, 'CG-C101', 1, 'Available', 'Electronic', '1234', GETDATE()),
-    (4, 2, 1, 'TT-B101', 1, 'Available', 'Padlock',    NULL,   GETDATE()),
-    (5, 2, 3, 'TT-B201', 2, 'Available', 'Padlock',    NULL,   GETDATE());
+    (4, 2, 1, 'TT-B101', 1, 'Available', 'Padlock',    NULL,    GETDATE()),
+    (5, 2, 3, 'TT-B201', 2, 'Available', 'Padlock',    NULL,    GETDATE());
     SET IDENTITY_INSERT STORAGE_UNITS OFF;
 END
 GO
@@ -115,19 +105,62 @@ BEGIN
     INSERT INTO DISCOUNTS (DiscountID, DiscountName, DiscountType, Value, MinMonths, PromoCode, ValidFrom, ValidTo, IsActive, CreatedAt)
     VALUES
     (1, N'Khuyến mãi chào mừng khách mới', 'Percentage', 10.00, 1, 'WELCOME10', '2026-01-01', '2026-12-31', 1, GETDATE()),
-    (2, N'Giảm giá thuê từ 6 tháng',       'Percentage', 15.00, 6, 'LONGTERM15', '2026-01-01', '2026-12-31', 1, GETDATE());
+    (2, N'Giảm giá thuê từ 6 tháng',        'Percentage', 15.00, 6, 'LONGTERM15', '2026-01-01', '2026-12-31', 1, GETDATE());
     SET IDENTITY_INSERT DISCOUNTS OFF;
 END
 GO
 
-PRINT N'>>> Đã seed dữ liệu mẫu thành công!';
+-- ============================================================
+-- 7. SEED DỮ LIỆU GIAO DỊCH MẪU (RESERVATIONS, CONTRACTS, PAYMENTS, TICKETS)
+-- ============================================================
+IF NOT EXISTS (SELECT 1 FROM RESERVATIONS WHERE ReservationID = 1)
+BEGIN
+    SET IDENTITY_INSERT RESERVATIONS ON;
+    INSERT INTO RESERVATIONS (ReservationID, CustomerID, FacilityID, UnitTypeID, UnitID, DiscountID, StartDate, EndDate, RentalMonths, MonthlyPrice, DiscountAmount, DepositAmount, TotalAmount, Status, CreatedAt)
+    VALUES
+    (1, 1, 1, 1, 1, 1, '2026-03-01', '2026-09-01', 6, 800000, 480000, 800000, 5120000, 'CheckedIn', GETDATE());
+    SET IDENTITY_INSERT RESERVATIONS OFF;
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM CONTRACTS WHERE ContractID = 1)
+BEGIN
+    SET IDENTITY_INSERT CONTRACTS ON;
+    INSERT INTO CONTRACTS (ContractID, ReservationID, CheckInByStaffID, ContractCode, StartDate, EndDate, Status, CheckInAt, TotalAmount, CreatedAt)
+    VALUES
+    (1, 1, 2, 'CNT-2026-0001', '2026-03-01', '2026-09-01', 'Active', GETDATE(), 5120000, GETDATE());
+    SET IDENTITY_INSERT CONTRACTS OFF;
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM PAYMENTS WHERE PaymentID = 1)
+BEGIN
+    SET IDENTITY_INSERT PAYMENTS ON;
+    INSERT INTO PAYMENTS (PaymentID, CustomerID, ReservationID, ContractID, PaymentCode, PaymentType, Amount, Status, PaidAt, CreatedAt)
+    VALUES
+    (1, 1, 1, 1, 'PAY-2026-0001', 'Rental', 5120000, 'Paid', GETDATE(), GETDATE());
+    SET IDENTITY_INSERT PAYMENTS OFF;
+END
+GO
+
+IF NOT EXISTS (SELECT 1 FROM SUPPORT_TICKETS WHERE TicketID = 1)
+BEGIN
+    SET IDENTITY_INSERT SUPPORT_TICKETS ON;
+    INSERT INTO SUPPORT_TICKETS (TicketID, CustomerID, ContractID, FacilityID, HandledByStaffID, Priority, Subject, Message, Status, CreatedAt)
+    VALUES
+    (1, 1, 1, 1, 2, 'Medium', N'Hỗ trợ hướng dẫn đổi mã PIN truy cập kho', N'Tôi muốn đổi mã PIN truy cập kho CG-A101 thành mã cá nhân.', 'Open', GETDATE());
+    SET IDENTITY_INSERT SUPPORT_TICKETS OFF;
+END
+GO
+
+PRINT N'>>> Đã seed dữ liệu mẫu và dữ liệu giao dịch thành công!';
 PRINT N'';
 PRINT N'--- Danh sách tài khoản đăng nhập (Mật khẩu tất cả: 123456) ---';
-PRINT N'1. Storage Customer              | customer@selfstorage.local | 0909000005';
-PRINT N'2. Facility Staff                | staff@selfstorage.local    | 0909000004';
-PRINT N'3. Facility Manager              | manager@selfstorage.local  | 0909000003';
-PRINT N'4. Business Operations Manager   | bom@selfstorage.local      | 0909000002';
-PRINT N'5. System Administrator          | admin@selfstorage.local    | 0909000001';
+PRINT N'1. Storage Customer            | customer@selfstorage.local | 0909000005';
+PRINT N'2. Facility Staff              | staff@selfstorage.local    | 0909000004';
+PRINT N'3. Facility Manager            | manager@selfstorage.local  | 0909000003';
+PRINT N'4. Business Operations Manager | bom@selfstorage.local      | 0909000002';
+PRINT N'5. System Administrator        | admin@selfstorage.local    | 0909000001';
 GO
 
 -- Kiểm tra danh sách tài khoản
