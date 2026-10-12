@@ -458,12 +458,14 @@ GO
 -- ============================================================
 -- SEED DATA: 5 Fixed Roles
 -- ============================================================
-INSERT INTO ROLES (RoleCode, RoleName, Description) VALUES
-('StorageCustomer', 'Storage Customer', 'Khách hàng thuê kho tự phục vụ'),
-('FacilityStaff', 'Facility Staff', 'Nhân viên cơ sở kho'),
-('FacilityManager', 'Facility Manager', 'Quản lý cơ sở kho'),
-('BusinessOperationsManager', 'Business Operations Manager', 'Quản lý vận hành kinh doanh toàn hệ thống'),
-('SystemAdministrator', 'System Administrator', 'Quản trị hệ thống');
+SET IDENTITY_INSERT ROLES ON;
+INSERT INTO ROLES (RoleID, RoleCode, RoleName, Description) VALUES
+(1, 'StorageCustomer', 'Storage Customer', N'Khách hàng thuê kho tự phục vụ'),
+(2, 'FacilityStaff', 'Facility Staff', N'Nhân viên cơ sở kho'),
+(3, 'FacilityManager', 'Facility Manager', N'Quản lý cơ sở kho'),
+(4, 'BusinessOperationsManager', 'Business Operations Manager', N'Quản lý vận hành kinh doanh toàn hệ thống'),
+(5, 'SystemAdministrator', 'System Administrator', N'Quản trị hệ thống');
+SET IDENTITY_INSERT ROLES OFF;
 GO
 
 -- ============================================================
@@ -481,12 +483,14 @@ GO
 -- ============================================================
 -- SEED DATA: Sample Unit Types
 -- ============================================================
-INSERT INTO STORAGE_UNIT_TYPES (TypeCode, TypeName, Description, AreaM2, IsCold, BasePrice, IsActive) VALUES
-('STD-5', N'Kho tiêu chuẩn 5m²', N'Kho khô tiêu chuẩn nhỏ', 5.00, 0, 800000, 1),
-('STD-10', N'Kho tiêu chuẩn 10m²', N'Kho khô tiêu chuẩn trung bình', 10.00, 0, 1400000, 1),
-('STD-20', N'Kho tiêu chuẩn 20m²', N'Kho khô tiêu chuẩn lớn', 20.00, 0, 2500000, 1),
-('COLD-5', N'Kho lạnh 5m²', N'Kho lạnh bảo quản', 5.00, 1, 1500000, 1),
-('COLD-10', N'Kho lạnh 10m²', N'Kho lạnh trung bình', 10.00, 1, 2800000, 1);
+SET IDENTITY_INSERT STORAGE_UNIT_TYPES ON;
+INSERT INTO STORAGE_UNIT_TYPES (UnitTypeID, TypeCode, TypeName, Description, AreaM2, IsCold, BasePrice, IsActive) VALUES
+(1, 'STD-5', N'Kho tiêu chuẩn 5m²', N'Kho khô tiêu chuẩn nhỏ', 5.00, 0, 800000, 1),
+(2, 'STD-10', N'Kho tiêu chuẩn 10m²', N'Kho khô tiêu chuẩn trung bình', 10.00, 0, 1400000, 1),
+(3, 'STD-20', N'Kho tiêu chuẩn 20m²', N'Kho khô tiêu chuẩn lớn', 20.00, 0, 2500000, 1),
+(4, 'COLD-5', N'Kho lạnh 5m²', N'Kho lạnh bảo quản', 5.00, 1, 1500000, 1),
+(5, 'COLD-10', N'Kho lạnh 10m²', N'Kho lạnh trung bình', 10.00, 1, 2800000, 1);
+SET IDENTITY_INSERT STORAGE_UNIT_TYPES OFF;
 GO
 
 PRINT N'>>> Database SelfStorageDB created successfully with adjusted ERD!';
