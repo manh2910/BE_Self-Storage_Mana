@@ -24,3 +24,13 @@ Thumbs.db
 
 ## Các file log phát sinh khi chạy app
 *.log
+
+## Cấu hình bổ sung cho Database (SQL Server / MySQL / SQLite)
+*.mdf
+*.ldf
+*.db
+*.sqlite
+*.sql.designer
+
+## Thư mục sinh ra do chạy test (nếu sau này bạn viết Unit Test)
+TestResults/
