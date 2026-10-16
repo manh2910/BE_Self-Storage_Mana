@@ -31,6 +31,7 @@ Thumbs.db
 *.db
 *.sqlite
 *.sql.designer
+/database/migrations/
 
 ## Thư mục sinh ra do chạy test (nếu sau này bạn viết Unit Test)
 TestResults/
